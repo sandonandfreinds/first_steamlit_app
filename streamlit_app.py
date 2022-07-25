@@ -37,6 +37,8 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # displays json data in panda dataframe 
 streamlit.dataframe(fruityvice_normalized)
 
+streamlit.stop()
+
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("select * from FRUIT_LOAD_LIST")
