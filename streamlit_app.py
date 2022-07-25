@@ -42,13 +42,12 @@ my_cur = my_cnx.cursor()
 my_cur.execute("select * from FRUIT_LOAD_LIST")
 my_data_row = my_cur.fetchall()
 streamlit.text("the fruit load list contains:")
-df = streamlit.dataframe(my_data_row)
+streamlit.dataframe(my_data_row)
 
 
 fruit_choice = streamlit.text_input('What fruit would you like to add?')
 streamlit.write('The user entered ', fruit_choice)
-df
-'''
-df = df.append(fruit_choice, ignore_index = True)
-streamlit.dataframe(df)
-'''
+my_cur.execute(f"insert into FRUIT_LOAD_LIST values({fruit_choice})")
+streamlit.text("the fruit load list contains:")
+streamlit.dataframe(my_data_row)
+
