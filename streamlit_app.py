@@ -12,6 +12,13 @@ def get_fruity_vice_data(this_fruit_choice):
     fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
     return fruityvice_normalized
 
+#get fruit load list
+def get_fruit_load_list():
+    with my_cnx.cursor() as my_cur:
+        my_cur.execute("select * from FRUIT_LOAD_LIST")
+        return my_cur.fetchall()
+
+
 streamlit.title('My Parents New Healthy Diner')
   
 streamlit.header('Breakfast Menu')
@@ -48,11 +55,6 @@ except URLError as e:
 
 streamlit.text("the fruit load list contains:")
 
-#get fruit load list
-def get_fruit_load_list():
-    with my_cnx.cursor as my_cur:
-        my_cur.execute("select * from FRUIT_LOAD_LIST")
-        return my_cur.fetchall()
 
 #add a button to load the fruit
 if streamlit.button('Get Fruit Load List'):
