@@ -47,7 +47,7 @@ streamlit.dataframe(my_data_row)
 
 fruit_choice = streamlit.text_input('What fruit would you like to add?', 'jackfruit')
 streamlit.write('The user entered ', fruit_choice)
-insert_statement = f"insert into pc_rivery_db.public.FRUIT_LOAD_LIST values {fruit_choice}"
+insert_statement = f"insert into pc_rivery_db.public.FRUIT_LOAD_LIST values '{fruit_choice}'"
 my_cur.execute(insert_statement)
 streamlit.text("the fruit load list contains:")
 my_cur.execute("select * from FRUIT_LOAD_LIST")
